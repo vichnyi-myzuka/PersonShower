@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="PersonShower.Views.PersonDataControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PersonShower.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="300">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Your Name:" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding Name}" Margin="5"></TextBlock>
+            <TextBlock Text="Your Surname:" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding Surname}" Margin="5"></TextBlock>
+            <TextBlock Text="Your Email:" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding Email}" Margin="5"></TextBlock>
+            <TextBlock Text="Your Birthdate:" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding Date}" Margin="5"></TextBlock>
+            <TextBlock Text="Your Age:" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding Age}" Margin="5"></TextBlock>
+            <TextBlock Text="Are you adult?" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding IsAdult}" Margin="5"></TextBlock>
+            <TextBlock Text="Your Sun Sign:" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding SunSign}" Margin="5"></TextBlock>
+            <TextBlock Text="Your Chinese Sign:" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding ChineseSign}" Margin="5"></TextBlock>
+            <TextBlock Text="Is today your birthday?" Margin="5"></TextBlock>
+            <TextBlock Text="{Binding IsBirthday}" Margin="5"></TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>
