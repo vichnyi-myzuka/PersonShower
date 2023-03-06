@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using PersonShower.Models;
 using PersonShower.Tools;
@@ -125,7 +126,7 @@ public class PersonViewModel: INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private void SignIn()
+    private async void SignIn()
     {
         if (Age < 0 || Age > 135)
         {
@@ -133,6 +134,10 @@ public class PersonViewModel: INotifyPropertyChanged
         }
         else
         {
+            await Task.Run(() =>
+            {
+                Task.Delay(1000).Wait();
+            });
             new PersonWindow(this).Show();
         }
     }
