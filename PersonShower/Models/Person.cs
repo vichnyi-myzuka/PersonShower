@@ -1,4 +1,6 @@
-﻿namespace PersonShower.Models;
+﻿using PersonShower.Exceptions;
+
+namespace PersonShower.Models;
 
 using System;
 public class Person
@@ -57,6 +59,16 @@ public class Person
         }
         set
         {
+            if (GetAge(value) < 0)
+            {
+                throw new FutureBirthException("You can't be born in future!");
+            }
+
+            if (GetAge(value) > 135)
+            {
+                throw new AlreadyDeadException("You're already dead, ghosts can't authorize here! Go away, ghostt!");
+            }
+            
             _date = value;
         }
     }
@@ -65,10 +77,8 @@ public class Person
     {
         get
         {
-            var today = DateTime.Today; 
-            var age = today.Year - Date.Year;
-            if (Date.Date > today.AddYears(-age)) age--;
-            return age;
+            
+            return GetAge(Date);
         }
     }
 
@@ -181,5 +191,13 @@ public class Person
         if (year % 12 == 9) {return "Snake";}
         if (year % 12 == 10) {return "Horse";}
         return "Sheep"; 
+    }
+
+    private int GetAge(DateTime date)
+    {
+        var today = DateTime.Today; 
+        var age = today.Year - Date.Year;
+        if (Date.Date > today.AddYears(-age)) age--;
+        return age;
     }
 }    

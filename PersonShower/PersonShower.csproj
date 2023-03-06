@@ -51,6 +51,9 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Exceptions\AlreadyDeadException.cs" />
+        <Compile Include="Exceptions\FutureBirthException.cs" />
+        <Compile Include="Exceptions\WrongEmailException.cs" />
         <Compile Include="Models\Person.cs" />
         <Compile Include="PersonWindow.xaml.cs">
           <DependentUpon>PersonWindow.xaml</DependentUpon>
