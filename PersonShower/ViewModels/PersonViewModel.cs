@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Windows;
 using PersonShower.Exceptions;
 using PersonShower.Models;
 using PersonShower.Tools;
@@ -12,11 +11,21 @@ public class PersonViewModel : INotifyPropertyChanged
 {
     #region Field
 
-    private Person _person = new();
+    private Person _person;
     private RelayCommand<object> _signInCommand;
     public event PropertyChangedEventHandler PropertyChanged;
 
     #endregion
+
+    public PersonViewModel()
+    {
+        _person = new();
+    }
+    
+    public PersonViewModel(Person person)
+    {
+        _person = person;
+    }
 
     #region Properties
 
@@ -62,27 +71,27 @@ public class PersonViewModel : INotifyPropertyChanged
 
     public int Age
     {
-        get { return _person.Age; }
+        get { return _person.GetAge(Date); }
     }
 
     public bool IsAdult
     {
-        get { return _person.IsAdult; }
+        get { return Age >= 18; }
     }
 
     public string SunSign
     {
-        get { return _person.SunSign; }
+        get { return _person.GetSunSign(); }
     }
 
     public string ChineseSign
     {
-        get { return _person.ChineseSign; }
+        get { return _person.GetChineseSign(); }
     }
 
     public bool IsBirthday
     {
-        get { return _person.IsBirthday; }
+        get { return Date.Day == DateTime.Today.Day && Date.Month == DateTime.Today.Month; }
     }
 
     public RelayCommand<object> SignInCommand
@@ -109,7 +118,7 @@ public class PersonViewModel : INotifyPropertyChanged
 
     private bool CanSignIn(object obj)
     {
-        return !String.IsNullOrEmpty(Name) && !String.IsNullOrEmpty(Surname) && !String.IsNullOrEmpty(Email);
+        return !String.IsNullOrEmpty(Name) || !String.IsNullOrEmpty(Surname) || !String.IsNullOrEmpty(Email);
     }
     
     private bool IsValidEmail(string email)

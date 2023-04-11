@@ -3,6 +3,7 @@
 namespace PersonShower.Models;
 
 using System;
+[Serializable]
 public class Person
 {
     #region Fields
@@ -72,48 +73,6 @@ public class Person
             _date = value;
         }
     }
-
-    public int Age
-    {
-        get
-        {
-            
-            return GetAge(Date);
-        }
-    }
-
-    public bool IsAdult
-    {
-        get
-        {
-            return Age >= 18;
-        }
-    }
-
-    public string SunSign
-    {
-        get
-        {
-            return GetSunSign();
-        }
-    }
-
-    public string ChineseSign
-    {
-        get
-        {
-            return GetChineseSign();
-        }
-    }
-
-    public bool IsBirthday
-    {
-        get
-        {
-            return Date.Day == DateTime.Today.Day && Date.Month == DateTime.Today.Month;
-        }
-    }
-
     #endregion
 
     #region Constructors
@@ -143,7 +102,7 @@ public class Person
     public Person() {}
 
     #endregion
-    private string GetSunSign()
+    public string GetSunSign()
     {
         int day = Date.Day;
         int month = Date.Month;
@@ -175,7 +134,7 @@ public class Person
         return "Something went wrong;";
     }
     
-    private string GetChineseSign()
+    public string GetChineseSign()
     {
         int year = Date.Year;
             
@@ -193,7 +152,7 @@ public class Person
         return "Sheep"; 
     }
 
-    private int GetAge(DateTime date)
+    public int GetAge(DateTime date)
     {
         var today = DateTime.Today; 
         var age = today.Year - Date.Year;
